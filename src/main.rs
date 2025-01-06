@@ -80,13 +80,12 @@ fn main() -> Result<(), AppError> {
 
     //make the request
     let client = reqwest::blocking::Client::new();
-    let response = client
+    client
         .post(hook.trim())
         .header("content-type", "application/json")
         .body(body)
         .send()
         .map_err(|_| AppError::MessageSendError)?;
-    println!("{:?}", response);
     //all alright
     Ok(())
 }
